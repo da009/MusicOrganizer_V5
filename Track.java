@@ -15,6 +15,8 @@ public class Track
     private String filename;
     // Almacena el número de veces que se ha reproducido la canción.
     private int playCount;
+    // Calificación para la canción.
+    private int rank;
     
     /**
      * Constructor for objects of class Track.
@@ -71,7 +73,7 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")";
+        return artist + ": " + title + "  (file: " + filename + ")" + "Rank: " + rank;
     }
     
     /**
@@ -86,6 +88,7 @@ public class Track
         this.title = title;
         this.filename = filename;
         this.playCount = 0;
+        this.rank = 0;
     }
     
     /**
@@ -102,5 +105,20 @@ public class Track
     public void playCountRestart()
     {
         playCount = 0;
+    }
+    
+    /**
+     * Permite poner una calificación a las canciones, entre 0 y 5;
+     */
+    public void setRankAsign(int rango)
+    {
+        if (rango >= 0 && rango <=5)
+        {
+            rank = rango;
+        }
+        else
+        {
+            System.out.println(rango + " no es un valor válido, el valor debe estar entre 0 y 5.");
+        }
     }
 }
