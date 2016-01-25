@@ -170,4 +170,18 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
+    
+    /**
+     * Busca la cadena introducida entre los nombres que tiene y devuelve el número.
+     */
+    public void findTitle(String titulo)
+    {
+        for(Track track : tracks)
+        {
+            if (track.getTitle().contains(titulo))
+            {
+                System.out.println(track.getDetails());
+            }
+        }
+    }
 }
