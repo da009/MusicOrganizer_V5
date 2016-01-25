@@ -15,6 +15,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    // Boolean para saber si se esta repriduciendo.
+    private boolean playingComplete;
 
     /**
      * Create a MusicOrganizer
@@ -27,6 +29,7 @@ public class MusicOrganizer
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
+        playingComplete = false;
     }
     
     /**
@@ -53,11 +56,17 @@ public class MusicOrganizer
      */
     public void playTrack(int index)
     {
+        if(playingComplete == true)
+        {
+            System.out.println("Se esta reproduciendo un track completo, no se puede cambiar de track.");
+        }
+        
         if(indexValid(index)) {
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
             tracks.get(0).playCountInc();
+            playingComplete = true;
         }
     }
     
@@ -123,9 +132,15 @@ public class MusicOrganizer
      */
     public void playFirst()
     {
+        if(playingComplete == true)
+        {
+            System.out.println("Se esta reproduciendo un track completo, no se puede cambiar de track.");
+        }
+        
         if(tracks.size() > 0) {
             player.startPlaying(tracks.get(0).getFilename());
             tracks.get(0).playCountInc();
+            playingComplete = true;
         }
     }
     
@@ -135,6 +150,7 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+        playingComplete = false;
     }
 
     /**
@@ -184,6 +200,21 @@ public class MusicOrganizer
             {
                 System.out.println(track.getDetails());
             }
+        }
+    }
+    
+    /**
+     * Informa por pantalla de si en este momento se está reproduciendo un track completo o si no.
+     */
+    public void isPlaying()
+    {
+        if (playingComplete == true)
+        {
+            System.out.println("Se esta reproduciendo una canción");
+        }
+        else
+        {
+            System.out.println("No se esta reproduciendo ninguna canción");
         }
     }
 }
