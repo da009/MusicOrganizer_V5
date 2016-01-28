@@ -220,15 +220,47 @@ public class MusicOrganizer
     }
     
     /**
-     * 
+     * Da los detalles de todos los tracks.
      */
     public void listAllTrackWithIterator()
     {
         Iterator<Track> listIt = tracks.iterator();
         while (listIt.hasNext() == true)
         {
-            System.out.println(tracks.getDetails());
             Track tracks = listIt.next();
+            System.out.println(tracks.getDetails());
+        }
+    }
+    
+    /**
+     * Elimina un track buscando por el artista.
+     */
+    public void removeByArtist(String artista)
+    {
+        Iterator<Track> listIt = tracks.iterator();
+        while (listIt.hasNext() == true)
+        {
+            Track tracks = listIt.next();
+            if (tracks.getArtist().contains(artista))
+            {
+                listIt.remove();
+            }
+        }
+    }
+    
+    /**
+     * Elimina un track buscando por el título.
+     */
+    public void removeByTitle(String titulo)
+    {
+        Iterator<Track> listIt = tracks.iterator();
+        while (listIt.hasNext() == true)
+        {
+            Track tracks = listIt.next();
+            if (tracks.getTitle().contains(titulo))
+            {
+                listIt.remove();
+            }
         }
     }
 }
