@@ -100,6 +100,14 @@ public class Track
     }
     
     /**
+     * Devuelve el valor del contador
+     */
+    public int getCount()
+    {
+        return playCount;
+    }
+    
+    /**
      * Constructor del método para reiniciar el contador y dejarlo a 0.
      */
     public void playCountRestart()
